@@ -1,3 +1,7 @@
+Reference 
+https://www.freebsdsoftware.org/secure-remote-access-ssh.html
+
+
 ## Include file for customizations
 ## USE WITH CAUTION
 Include /usr/local/nessy2/etc/ssh/sshd_config.inc
