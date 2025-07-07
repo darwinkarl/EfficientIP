@@ -1,0 +1,27 @@
+List of EfficientIP services
+
+// For Checking DNS Service //
+#service ipmdns.sh status
+
+// To Stop/Start DNS Service //
+#service ipmdns.sh start
+#service ipmdns.sh stop
+
+// For Checking DHCP Service //
+#service ipmdhcp.sh status
+
+// To Start/Stop DHCP Service //
+#service ipmdhcp.sh start
+#service ipmdhcp.sh stop
+
+// To Disable IPMSERVER Service //
+#service ipmserver.sh stop
+
+// To Enable IPMSERVER Service //
+#service ipmserver.sh start
+
+
+
+// Locate files in the root directory //
+#find / -type f -name '*.sh'    // file type //
+#find / -name '*.sh'            // all files //
