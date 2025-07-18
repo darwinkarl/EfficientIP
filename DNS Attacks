@@ -12,7 +12,7 @@
 ---------------XXDOMAIN ATTACK--------------
 1. Download the text file contains unknown domains
 2. On Linux client, execute the following command:
-# dnsperf -d nxdomain.system.sg.txt -s <DNS Server IP> -Q 100
+# dnsperf -d nxdomain.system.sg.txt -s <DNS Server IP> -Q 1000 -
 
 ---------------SERVFAIL ATTACK--------------
 1. Download the text file contains unknown domains
