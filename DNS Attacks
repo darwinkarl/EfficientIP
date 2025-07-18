@@ -1,0 +1,20 @@
+// for Linux preferred Ubuntu //
+# dnsperf -d nxdomain.systemx.sg.tx -s <DNS Server IP> -Q 100           // NXDomain Attack - flooding unknown domain to the DNS //
+# dnsperf -d servfail.tun.systemx.sg.tx -s <DNS Server IP> -Q 220       // Server Fail - DNS flood unknow subdomains to the DNS Server //
+
+
+
+---------------DNS Tunneling Test--------------
+1. On Linux client, initiate connection to the tunneling server by executing iodine, ensuring the DNS resolver is configured to the SOLIDserver
+# iodine -rfP password tun.systemx.sg
+
+
+---------------XXDOMAIN ATTACK--------------
+1. Download the text file contains unknown domains
+2. On Linux client, execute the following command:
+# dnsperf -d nxdomain.system.sg.txt -s <DNS Server IP> -Q 100
+
+---------------SERVFAIL ATTACK--------------
+1. Download the text file contains unknown domains
+2. On Linux client, execute the following command:
+# dnsperf -d servfail.tun.system.sg.txt -s <DNS Server IP> -Q 100
