@@ -1,0 +1,27 @@
+Prerequisites
+- You must have two SOLIDserver appliances.
+- The HA configuration can only be configured from and with two appliances using an IPv4 address or two appliances using an IPv6 address.
+- The Master appliance should be configured locally as detailed in the section Configuring SOLIDserver to Remotely Manage Other Appliances.
+- The future Hot Standby must be added to the page Centralized Management of the Master as detailed in the section Adding Remote Appliances.
+
+Limitation
+ - The database High Availability is configurable only for two appliances.
+ - We strongly advise against displaying several HA configurations on the page Centralized Management. 
+ - The HA does not support the configuration of a NAT between the two appliances.
+ - If you encrypted the database, you cannot enroll a remote appliance as Hot Standby if the Active key of the local appliance, the future Master, is missing or corrupted
+
+
+Keep in mind that for the configuration to be viable and effective the two appliances must:
+ • Meet the prerequisites.
+ • Be set at the same time. For more details, refer to the section Configuring NTP Servers.
+ • Have the same version of SOLIDserver.
+ • Have the same performance rate, to ensure a smooth transition. In the event of a switch, the former Hot Standby has retrieved all the database information and can actually provide the same performance and efficiency as the original Master.
+ • Have the same architecture (32 bits or 64 bits).
+
+Configuring High Availability Registry
+module.system.max_hot_standby_time_skew             - 3600
+module.system.init_hot_standby_timeout              - 1000           /// default value is 1000 // allows you to control how long a switch should take, whether you are enrolling an appliance or switching the roles ///
+module.system.hot_standby_max_replication_lag       - 60             /// default value is 60 // allows you to set a lack of database replication period before automatically switching the appliances role ///
+module.system.hot_standby_switch_retry              - 3              /// default value is 3 // If the Master is not responding, i.e. it does not send its role and status, the Hot Standby switches to Master ///
+module.system.hot_standby_switch_sleep              - 4              /// default value is 4 // if the Hot Standby does not get an answer from the Master ///
+module.system.hot_standby_connect_timeout           - 4              /// default value is 4 //  If after 4 seconds, the connection is not established, the Hot Standby considers the Master appliance to be down ///
