@@ -25,3 +25,8 @@ List of EfficientIP services
 // Locate files in the root directory //
 #find / -type f -name '*.sh'    // file type //
 #find / -name '*.sh'            // all files //
+
+
+// Troubleshoot HighAvailability //
+using tcpdumps capturing the postgredatabase and https
+#tcpdumps -i vmx0 -vv src 192.168.69.78 && dst 192.168.68.79
