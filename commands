@@ -35,11 +35,20 @@ using tcpdumps capturing the postgredatabase and https
 
 // Troubleshoot DHCP Server //
 Primary CM > DHCP Server ------ 443  tcp
-DHCP Master > DHCP Backup ----- 646  tcp    // Failover //
-DHCP Backup > DHCP Master ----- 847  tcp    // Failover //
+DHCP Master > DHCP Backup ----- 846  tcp    // Failover //
+DHCP Backup > DHCP Master ----- 647  tcp    // Failover //
 DHCP Client 68 > DHCP Server -- 67   udp    // required for DHCP //
 DHCP Server 67 > DHCP Client -- 68   udp    // required for DHCP //
 
 command tools
 #tcpdump -i (dhcp interface) port '647'
 #tcpdump -i (dhcp interface) port '847'
+
+// Validating DHCP DORA on EIP Server //
+directory /var/log/
+#cat dhcpd.log | grep DISCOVER     // Checking if the client can broadcast //
+#cat dhcpd.log | grep OFFER        // Validate if the EIP can send OFFER to the client //
+#cat dhcpd.log | grep REQUEST      // Validate if the client can request IP Address to the Server //
+#cat dhcpd.log | grep ACK          // Validate if the EIP Server can give IP Address to the client //
+
+
