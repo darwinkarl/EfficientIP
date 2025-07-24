@@ -30,3 +30,4 @@ List of EfficientIP services
 // Troubleshoot HighAvailability //
 using tcpdumps capturing the postgredatabase and https
 #tcpdumps -i vmx0 -vv src 192.168.69.78 && dst 192.168.68.79
+#tcpdumps -i vmx0 port '443'
