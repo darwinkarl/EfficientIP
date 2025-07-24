@@ -29,5 +29,17 @@ List of EfficientIP services
 
 // Troubleshoot HighAvailability //
 using tcpdumps capturing the postgredatabase and https
-#tcpdumps -i vmx0 -vv src 192.168.69.78 && dst 192.168.68.79
-#tcpdumps -i vmx0 port '443'
+#tcpdump -i vmx0 -vv src 192.168.69.78 && dst 192.168.68.79
+#tcpdump -i vmx0 port '443'                // https protocol //
+#tcpdump -i vmx0 port '5432'               // postgre database replication //
+
+// Troubleshoot DHCP Server //
+Primary CM > DHCP Server ------ 443  tcp
+DHCP Master > DHCP Backup ----- 646  tcp    // Failover //
+DHCP Backup > DHCP Master ----- 847  tcp    // Failover //
+DHCP Client 68 > DHCP Server -- 67   udp    // required for DHCP //
+DHCP Server 67 > DHCP Client -- 68   udp    // required for DHCP //
+
+command tools
+#tcpdump -i (dhcp interface) port '647'
+#tcpdump -i (dhcp interface) port '847'
