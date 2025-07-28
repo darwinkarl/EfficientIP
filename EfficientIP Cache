@@ -1,0 +1,12 @@
+// To check the cache on the cli //
+#cd /usr/local/nessy2/bin/
+#rndc dumpdb -all                  // This will provide the file for cache located in /data1/etc/namedb/named_dumb.db //
+
+// To check cache on file //
+#cd /data1/etc/namedb/
+#cat named_dumb.db
+
+
+// To clear the cache on EIF //
+#cd /usr/local/nessy2/bin/
+#rndc flush
