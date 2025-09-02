@@ -52,3 +52,10 @@ directory /var/log/
 #cat dhcpd.log | grep ACK          // Validate if the EIP Server can give IP Address to the client //
 
 
+// Troubleshooting NTP Server //
+#ntpq -p                            // Check if the ntp server is working //
+#ntpdate -dvu 121.58.193.100        // validating the NTP Server synchronization //
+
+
+// Rollback the SolidServer on the previous configuration //
+# /usr/local/nessy2/script/rollback_upgrade.sh
