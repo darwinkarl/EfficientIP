@@ -62,5 +62,7 @@ directory /var/log/
 
 
 // Troubleshooting NTP Server //
+#service 
+#ntpdate -dvu 121.58.193.100        // validating the NTP Server synchronization if can receive and transmit to the server //
 #ntpq -p                            // Check if the ntp server is working //
-#ntpdate -dvu 121.58.193.100        // validating the NTP Server synchronization if can receive and transmit //
+
