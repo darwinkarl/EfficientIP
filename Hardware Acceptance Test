@@ -1,0 +1,10 @@
+Hardware Acceptance Test
+
+Check System Chip 
+% sysctl hw.model
+
+Check System number of CPU
+%sysctl hw.ncpu
+
+Check physical memory of appliance
+%sysctl -a | grep hw.physmem
