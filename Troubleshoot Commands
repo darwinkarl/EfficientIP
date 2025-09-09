@@ -66,3 +66,5 @@ directory /var/log/
 #ntpdate -dvu 121.58.193.100        // validating the NTP Server synchronization if can receive and transmit to the server //
 #ntpq -p                            // Check if the ntp server is working //
 
+// Trobleshooting Ports & Protocol //
+#nz -zv 192.168.69.73 443          // Checking if the ports 443 is open //
