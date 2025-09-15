@@ -44,6 +44,7 @@ command tools
 #tcpdump -i (dhcp interface) port '647'
 #tcpdump -i (dhcp interface) port '847'
 
+
 // Validating DHCP DORA on EIP Server //
 directory /var/log/
 #cat dhcpd.log | grep DISCOVER     // Checking if the client can broadcast //
@@ -51,7 +52,11 @@ directory /var/log/
 #cat dhcpd.log | grep REQUEST      // Validate if the client can request IP Address to the Server //
 #cat dhcpd.log | grep ACK          // Validate if the EIP Server can give IP Address to the client //
 
+// Renew IP Address to ISC DHCP Client //
+% sudo dhclient -r                 // Kill DHCP process
+% sudo dhclient -v                 // Renew DHCP client
 
+--------------------------------------------------------------------
 // Rollback the SolidServer on the previous configuration //
 # /usr/local/nessy2/script/rollback_upgrade.sh
 
