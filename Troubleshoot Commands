@@ -73,3 +73,8 @@ directory /var/log/
 
 // Trobleshooting Ports & Protocol //
 #nz -zv 192.168.69.73 443          // Checking if the ports 443 is open //
+
+--------------------------------------------------------------------
+// Fixing/Restart the ipmadmin password to default //
+# sudo /usr/local/etc/rc.d/ipmserver.sh restart -I 
+--------------------------------------------------------------------
