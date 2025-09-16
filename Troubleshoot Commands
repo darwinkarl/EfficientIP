@@ -83,3 +83,52 @@ directory /var/log/
 // Troubleshooting snmp //
 # tcpdump -T snmp "(dst port 161 or 162)"
 --------------------------------------------------------------------
+
+--------------------------------------------------------------------
+// Monitoring System & Performance //
+# df -k             // Kilobytes format //
+# df -h             // Human Readable format //        
+# ps
+# ps au
+# top               // Use to monitor the total space of CPU,RAM, SWAP
+# top -mio
+# gstat             // use to monitor latency of read and write actions on the disk //
+# swapinfo
+
+// If the /var filesystem display 0% remaining capacity //
+# df -h           // shows 100% capacity for /var //
+# du -h /var      //locate the biggest sub-directory in /var //
+/var/spool/clientmqueue > high number of queued client emails waiting to be delivered
+
+
+// Database issues are mainly applicable to Management appliance with large data sets and or those managing large DNS/DHCP //
+Symptoms of slowness can include:
+- SOLIDserver database update is slow
+- DHCP leases take minutes to get to IPAM and DNS
+- IPAM data takes minutes to get to DNS
+- Different queues on the debug page are larger than 5-10K
+
+// Troubleshooting Database Issues //
+1. Monitor Database Table Size
+2. Database fragmentation - can cause some performance issue
+% sudo /usr/local/bin/psql -c "select * from bloat" ness2      // Check the wastedbytes and wastedibytes (index) columns both should be less than 50MB more than 50MB has a database fragmentation//
+
+// Best practice to
+
+// Troubleshooting Network //
+# netstat -i
+# netstat -a         // show the listening ports //
+
+// SNMP polling troubleshoot //
+% snmpwalk -v2c -c public -OF 127.0.0.1 "OID"
+
+
+// modify the snmp file //
+% more /data1/share/snmp/eip-traps.conf
+
+// Trounleshooting SNMP-Related Issue //
+1/ SNMP Get command from the NMS to the SOLIDserver
+2. Network Capture on the SOLIDserver
+3. download the trace file
+4. 
+5. snmpd.log
