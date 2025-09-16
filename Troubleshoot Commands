@@ -78,3 +78,8 @@ directory /var/log/
 // Fixing/Restart the ipmadmin password to default //
 # sudo /usr/local/etc/rc.d/ipmserver.sh restart -I 
 --------------------------------------------------------------------
+
+--------------------------------------------------------------------
+// Troubleshooting snmp //
+# tcpdump -T snmp "(dst port 161 or 162)"
+--------------------------------------------------------------------
