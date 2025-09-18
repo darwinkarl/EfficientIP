@@ -132,3 +132,14 @@ Symptoms of slowness can include:
 3. download the trace file
 4. 
 5. snmpd.log
+
+
+DNS Resolver/Forwarder TShoot
+% dig +trace www.example.org
+% dig @ns1.example.org www.example.org
+
+% dig @10.1.0.100 axfr reseach.org
+
+// High Availability Checking Replication Database //
+# cat /tmp/init.hot.standby_database.log
+
