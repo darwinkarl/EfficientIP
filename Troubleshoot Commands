@@ -72,8 +72,8 @@ directory /var/log/
 #ntpq -p                            // Check if the ntp server is working //
 
 // Trobleshooting Ports & Protocol //
-#nz -zv 192.168.69.73 443          // Checking if the ports 443 is open //
-
+#nc -zv 192.168.69.73 443          // Check TCP if the ports 443 is open //
+#nc -uzv 192.168.69.73 161         // Check the UDP port is open //
 --------------------------------------------------------------------
 // Fixing/Restart the ipmadmin password to default //
 # sudo /usr/local/etc/rc.d/ipmserver.sh restart -I 
