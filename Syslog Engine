@@ -19,3 +19,7 @@ log { destination { file ("/tmp/test.log"); }; flags (catchall); };
 
 // Step 3: Restart syslog-ng service //
 # sudo syslog-ng-ctl restart
+
+// Troubleshoot Syslog //
+# tcpdump -i vmx0 -vv port 514 | grep login
+# tcpdump -i vmx0 -vv src x.x.x.x && dst x.x.x.x and udp 514 | grep login
