@@ -1,0 +1,21 @@
+      // Syslog-ng Enginer //
+
+//  -- to switch to syslog-ng engine-- //
+# /usr/local/nessy2/script/syslog.sh stop
+// switch enginge to syslog-ng by editing the /etc/rc.conf //
+syslogd_enabled="NO"
+syslog_ng_enable="YES"
+# /usr/local/nessy2/script/syslog.sh start
+
+    // Syslog-ng Custom Configuration //
+
+// Step 1: Create and Edit an include file in /usr/local/nessy2/etc/syslog-ng.d/include //
+# sudo more /usr/local/nessy2/etc/syslog-ng.d/include/ngsyslog.inc
+log { destination { file ("/tmp/test.log"); }; flags (catchall); };
+
+// Step 2: Create the log file and modify file permissions //
+# sudo touch /tmp/test.log
+# sudo chdmod 600 /tmp/test.log
+
+// Step 3: Restart syslog-ng service //
+# sudo syslog-ng-ctl restart
