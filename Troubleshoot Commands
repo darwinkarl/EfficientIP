@@ -143,3 +143,5 @@ DNS Resolver/Forwarder TShoot
 // High Availability Checking Replication Database //
 # cat /tmp/init.hot.standby_database.log
 
+// Restart Syslog engine service //
+# /usr/local/nessy2/script/syslog.sh restart
