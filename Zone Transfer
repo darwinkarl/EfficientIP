@@ -2,3 +2,9 @@
 
 // to check the zone transfer //
 # tail -f named.d | grep IXFR && AXFR
+
+ // Find the nameservers for a domain
+#d ig +short ns example.com
+
+// Perform the AXFR transfer from one of those servers (e.g., ns1.example.com)
+# dig axfr example.com @ns1.example.com
