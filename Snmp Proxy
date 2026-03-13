@@ -1,3 +1,30 @@
 NAME
 snmpd.conf - configuration file for the Net-SNMP	SNMP agent
 
+#User Defined
+
+#Community to Security Mapping
+com2sec -Cn ctx_eip1 eipuser1  default SynetcomFM
+com2sec -Cn ctx_eip2 eipuser2  default SynetcomFM
+
+#Group Mapping
+group  eipgroup        v2c     eipuser1
+group  eipgroup2        v2c     eipuser2
+
+#View Definition
+view   all     included        .1
+
+#Access Policy
+access eipgroup ctx_eip1 any noauth prefix all none none
+access eipgroup2 ctx_eip2 any noauth prefix all none none
+
+#PSNMP Proxy Rules
+#proxy  -Cn  ctx_eip1  -v 2c -c SynetcomFM  192.168.71.101  .1.3.6.1.4.1.50001
+proxy  -Cn  ctx_eip1  -v 2c -c SynetcomFM  192.168.71.101  .1.3.6
+#proxy  -Cn  ctx_eip2  -v 2c -c SynetcomFM2  192.168.71.102  .1.3.6.1.4.1.50002
+proxy  -Cn  ctx_eip2  -v 2c -c SynetcomFM2  192.168.71.102  .1.3.6
+
+
+
+reference: www.net-snmp.org  // https://www.net-snmp.org/wiki/index.php/Snmpd_proxy //
+
