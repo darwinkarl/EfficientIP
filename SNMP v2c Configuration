@@ -1,0 +1,25 @@
+## This Document is a guide how to configure and validate the SNMP from EfficientIP ##
+
+// ################## Procedure ############### // 
+
+1. Admin Home Page > Authentication & Security > Network devices & SNMP profiles
+2. Delete All SNMP PROFILES CONFIGURATION
+3. Add New SNMP PROFILE CONFIGURATION 
+    > On SNMP profile name > "Synetcom Profile"
+    > Add Notes ( EfficientIP SNMP Profiles )
+    > Choose SNMP version > v2c > Next                                             // In this guide ill choose snmp v2c
+    > On Read community put the SNMP Community string > "SynetcomFM"               // You can define community string on your Own
+    > then OK!
+4. On Adminitration Tab go to Services and find SNMP Server
+    > Click SNMP server > Next > Choose SNMP version v1/v2c > On Community put "SynetcomFM" > on SNMP restriction put "default"           // if you want to restric or hardened the SNMP you can specify which servers can read the SNMP protocol //
+    > Click Add > Next > OK
+
+To validate if the SNMP is working go to shell
+from Client
+% snmpwalk -v2c -c SynetcomFM -Of 192.168.71.101 1.3.6.1.4.1.2440.1.14              // snmpwalk 'version' -c 'Community string' 'Server IP Address' -Of 'print full OIDs on output'  'OIDs' //
+*** If the Clients Received an Reply to Server the SNMP integration is Working Fine ***
+
+from Server
+% sudo tcpdump -i em1 port 161 and dst 192.168.71.110 | grep GetResponse            // This command it to validate the server got response to the client //
+
+
