@@ -1,0 +1,92 @@
+#This guide is how to configured the SNMP Proxy
+#The configuration is only applicable to Proxy Server
+
+#On this example the Central Management is acting SNMP Proxy Server
+NMS Server = 192.168.71.108
+CM Server = 192.168.71.101
+Remote Server1 = 192.168.71.110
+Remote Server2 = 192.168.71.111
+
+NMS Server <> CM Server
+SNMP Version v2c
+Community String: SynetcomProxy 
+
+CM Server <> Remote Servers
+SNMP Version v2c
+Community String: SynetcomFM2 
+
+---------------------------------------------------------------------------------------------------------------------------------
+SNMP Proxy v2c
+1. Go to EfficientIP Cli 
+2. Go to /data1/etc/snmpd/
+3. Create copy of custom.conf
+# cp custom.conf custom.conf.back
+4. Edit the custom.conf using vim
+5. Add the follow below
+# Inbound Access : Allow NMS Server
+rocommunity SynetcomProxy 192.168.71.108
+
+# Access Policy
+access Mygroup1 "" any noauth exact all none none
+
+# Proxy Rules Pointing to Remote Servers
+proxy -v 2c -c SynetcomFM2 192.168.71.110 .1.3.6.1.4.1.50001 1.3.6            // 1.3.6 will omit to query to remote server1      
+proxy -v 2c -c SynetcomFM2 192.168.71.111 .1.3.6.1.4.1.50002 1.3.6            // 1.3.6 will omit to query to remote server2
+---------------------------------------------------------------------------------------------------------------------------------
+
+Testing on NMS Server 
+# snmpwalk -v 2c -c SynetcomProxy 192.168.71.101 .1.3.6.1.4.1.50001.1.2.1.1.5.0        // Return Value String of the Hostname
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+#On this example the Central Management is acting SNMP Proxy Server with snmp v3 to the remote appliances
+
+NMS Server = 192.168.71.108
+CM Server = 192.168.71.101
+Remote Server1 = 192.168.71.110
+Remote Server2 = 192.168.71.111
+
+NMS Server <> CM Server
+SNMP Version v2c
+Community String: SynetcomProxy 
+
+CM <> Remote Server
+SNMP Version v3
+Authentication
+User: ipmserver
+level: auth
+Key: PLDT-Pr1v@t3Snmp!
+Algo: SHA256
+
+Privacy
+Key: PLDT-Pr1v@t3Snmp!
+Protocol: AES256
+
+---------------------------------------------------------------------------------------------------------------------------------
+SNMP Proxy v3
+1. Go to EfficientIP Cli 
+2. Go to /data1/etc/snmpd/
+3. Create copy of custom.conf
+# cp custom.conf custom.conf.back
+4. Edit the custom.conf using vim
+5. Add the follow below
+# Inbound Access : Allow NMS Server
+rocommunity SynetcomProxy 192.168.71.108
+
+# Access Policy
+access Mygroup1 "" any noauth exact all none none
+
+# Proxy Rules Pointing to Remote Servers
+proxy -v 3 -u ipmserver -l authPriv -a SHA-256 -A 'PLDT-Pr1v@t3Snmp!' -x AES-256 -X 'PLDT-Pr1v@t3Snmp!' 192.168.71.110 .1.3.6.1.4.1.50001 1.3.6           // 1.3.6 will omit to query to remote server1
+proxy -v 3 -u ipmserver -l authPriv -a SHA-256 -A 'PLDT-Pr1v@t3Snmp!' -x AES-256 -X 'PLDT-Pr1v@t3Snmp!' 192.168.71.111 .1.3.6.1.4.1.50002 1.3.6           // 1.3.6 will omit to query to remote server2
+---------------------------------------------------------------------------------------------------------------------------------
+
+Testing on NMS Server 
+snmpwalk -v 3 -u ipmserver -l authPriv -a SHA-256 -A 'PLDT-Pr1v@t3Snmp!' -x AES-256 -X 'PLDT-Pr1v@t3Snmp!' 192.168.71.101 .1.3.6.1.4.1.50001.1.2.1.1.5.0   // Return Value String of the Hostname
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
