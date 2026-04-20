@@ -1,0 +1,9 @@
+In this simulation will be using Ubuntu Server 24.04 LTS
+
+## perfdhcp is a tool to gen
+Procedure
+1. Install perfdhcp DHCP testing tool.
+$sudo apt install kea-admin
+
+2. Simulate perfdhcp to server
+# perfdhcp -4 -R 10 -p 120 -l ens160        //
