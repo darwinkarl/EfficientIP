@@ -1,9 +1,24 @@
 In this simulation will be using Ubuntu Server 24.04 LTS
 
-## perfdhcp is a tool to gen
+## perfdhcp is a tool to used to test DHCP server performance (part of ISC DHCP / Kea).
 Procedure
 1. Install perfdhcp DHCP testing tool.
 $sudo apt install kea-admin
 
 2. Simulate perfdhcp to server
-# perfdhcp -4 -R 10 -p 120 -l ens160        //
+# perfdhcp -4 -R 10 -p 120 -l ens160      
+
+Details
+-4 → Use IPv4 (instead of IPv6).
+-R 10 → Send packets at a rate of 10 requests per second.
+-p 120 → Use 120 parallel clients/sessions (simulated DHCP clients).
+-l ens160 → Bind to the network interface named ens160
+
+In plain terms
+You’re simulating 120 DHCP clients on interface ens160, generating traffic at 10 requests per second, to measure how a DHCP server responds under load.
+
+Typical use case
+This is commonly used to:
+-Stress-test a DHCP server (like Kea DHCP or ISC DHCP)
+-Measure lease allocation performance
+-Diagnose bottlenecks in network provisioning
