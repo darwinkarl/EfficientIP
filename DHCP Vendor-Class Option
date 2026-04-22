@@ -1,0 +1,12 @@
+Go to Smart Architecture >> All ACLs
+In this tab you can see all the predefined ACL
+
+----------------------------------------------------------------
+To Add user-defined ACL click +
+in the Match Expression add this Vendor-Class Identifier
+match if option vendor-class-identifier = "Cisco AP c1240";                //this will specify the vendor is matching to Cisco APc1240
+
+
+
+To Check the Vendor-Class of the device go to CLI of the DHCP Server
+# tcpdump -i em1 -vv | grep Vendor-Class
