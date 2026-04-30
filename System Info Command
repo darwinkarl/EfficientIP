@@ -1,0 +1,7 @@
+This file is to show the system details of FreeBSD OS
+
+% uname -a
+% kenv
+% env
+% uptime
+% less /var/run/dmesg.boot
