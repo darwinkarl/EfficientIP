@@ -1,0 +1,11 @@
+To manually measure speed between master and hot-standby:
+create 100 MB manual file:
+
+dd if=/dev/zero of=/tmp/100mb-test bs=1024 count=102400
+Copy
+
+// copy file to hot-standby using SCP //
+% scp /tmp/100mb-test admin@10.0.110.101:/tmp/ 
+
+Password for admin@10.0.110.101: 100mb-test
+Copy
